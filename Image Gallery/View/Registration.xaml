@@ -1,0 +1,32 @@
+﻿<Window x:Class="Image_Gallery.View.Registration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Image_Gallery.ViewModel"
+        mc:Ignorable="d"
+        Title="Image Gallery - Registration" Height="470" Width="250" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+    <Grid Background="{StaticResource WindowBackgroundBrush}">
+        <StackPanel HorizontalAlignment="Center" Name="UserInfo">
+            <Label HorizontalAlignment="Center" Margin="25">Image Gallery Registration</Label>
+            <Label>Login*</Label>
+            <TextBox Margin="0 5 0 5" Height="25" MaxLength="20" Text="{Binding Login}"></TextBox>
+            <Label>Password*</Label>
+            <PasswordBox Margin="0 5 0 5" Height="25" MaxLength="20" x:Name="PasswordBox"></PasswordBox>
+            <Label>Password again*</Label>
+            <PasswordBox Margin="0 5 0 5" Height="25" MaxLength="20" x:Name="PasswordBoxAgain"></PasswordBox>
+            <Label Margin="0 25 0 10">About yourself</Label>
+            <Label>Name*</Label>
+            <TextBox Margin="0 5 0 5" Height="25" MaxLength="25" Text="{Binding Name}"></TextBox>
+            <Label>Surname</Label>
+            <TextBox Margin="0 5 0 5" Height="25" MaxLength="25" Text="{Binding Surname}"></TextBox>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Width="90" Margin="5 15 5 20" Padding="5" IsDefault="True"
+                        Command="{Binding OkButtonClick, UpdateSourceTrigger=PropertyChanged}"
+                        CommandParameter="{Binding ElementName=UserInfo}">Ok</Button>
+                <Button Width="90" Margin="5 15 5 20" Padding="5" IsCancel="True"
+                        Command="{Binding CancelButtonClick}">Cancel</Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

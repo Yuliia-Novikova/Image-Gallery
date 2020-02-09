@@ -1,0 +1,71 @@
+﻿<Window x:Class="Image_Gallery.View.Gallery"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Image_Gallery.ViewModel"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        mc:Ignorable="d"
+        Title="Image Gallery" MinHeight="500" MinWidth="550" WindowStartupLocation="CenterScreen" 
+        Height="515" Width="850">
+    <Grid Background="{StaticResource WindowBackgroundBrush}">
+        <Grid.Resources>
+            <local:BoolToStringConverter x:Key="BoolToStrConverter"/>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Image Grid.Row="0" Grid.Column="0" Name="picHolder" Stretch="Uniform"
+               Margin="5" Source="{Binding Path=CurrentPicture.Name}"></Image>
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" MinWidth="90" Margin="5 12" Padding="5" Content="First"
+                    x:Name="First" Command="{Binding FirstButtonClick}" />
+            <Button Grid.Column="1" MinWidth="90" Margin="5 12" Padding="5" Content="Previous"
+                    x:Name="Previous" Command="{Binding PreviousButtonClick}" />
+            <Button Grid.Column="2" MinWidth="90" Margin="5 12" Padding="5" Content="Next"
+                    x:Name="Next" Command="{Binding NextButtonClick}" />
+            <Button Grid.Column="3" MinWidth="90" Margin="5 12" Padding="5" Content="Last"
+                    x:Name="Last" Command="{Binding LastButtonClick}">
+            </Button>
+            <Button Grid.Column="4" MinWidth="90" Margin="5 12" Padding="5" Content="Exit"
+                    x:Name="Exit" Command="{Binding ExitButtonClick}">
+            </Button>
+        </Grid>
+        <Slider Grid.Row="0" Grid.Column="1" Name="Slider" Margin="10" Orientation="Vertical"
+                TickPlacement="Both" Maximum="{Binding TotalImgCount}" 
+                Value="{Binding CurrentIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+        </Slider>
+        <StackPanel Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" Margin="15">
+            <GroupBox Margin="5 0 5 10" Padding="3 5" Header="Image Information" MinHeight="115">
+                <Label x:Name="ImgInfo" Content="{Binding PictureDescription}" />
+            </GroupBox>
+            <GroupBox Margin="5 15" Padding="3 5" Header="Image Mark">
+                <StackPanel Name="GroupBoxImageMark">
+                    <RadioButton Margin="0 1" GroupName="Mark" Name="Perfect" Content="5 (Perfect)" IsChecked="{Binding Path=CurrentMark, 
+                        Converter={StaticResource BoolToStrConverter}, ConverterParameter=5, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                    <RadioButton Margin="0 1" GroupName="Mark" Name="Good" Content="4 (Good)" IsChecked="{Binding Path=CurrentMark, 
+                        Converter={StaticResource BoolToStrConverter}, ConverterParameter=4, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                    <RadioButton Margin="0 1" GroupName="Mark" Name="Normal" Content="3 (Normal)" IsChecked="{Binding Path=CurrentMark, 
+                        Converter={StaticResource BoolToStrConverter}, ConverterParameter=3, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                    <RadioButton Margin="0 1" GroupName="Mark" Name="Bad" Content="2 (Bad)" IsChecked="{Binding Path=CurrentMark, 
+                        Converter={StaticResource BoolToStrConverter}, ConverterParameter=2, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                    <RadioButton Margin="0 1" GroupName="Mark" Name="Awful" Content="1 (Awful)" IsChecked="{Binding Path=CurrentMark, 
+                        Converter={StaticResource BoolToStrConverter}, ConverterParameter=1, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+    </Grid>
+</Window>
