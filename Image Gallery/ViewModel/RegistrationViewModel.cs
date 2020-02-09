@@ -94,7 +94,7 @@ namespace Image_Gallery.ViewModel
                              {
                                  Id = _users.Count + 1,
                                  Login = Login.Trim(),
-                                 Password = Login.Trim(),
+                                 Password = Password.Trim(),
                                  Name = Name.Trim(),
                                  Surname = Surname.Trim(),
                                  Marks = new List<Mark>()
